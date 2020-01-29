@@ -39,21 +39,20 @@ const EditMovie = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log(
-    //   {
-    //     ...currentMovie,
-    //     stars: currentMovie.stars.split(","),
-    //     id: movie.id
-    //   },
-    //   movie.id
-    // );
+    const newStars = () => {
+      return currentMovie.stars !== movie.stars
+        ? currentMovie.stars.split(",")
+        : movie.stars;
+    };
     axios
       .put(`http://localhost:5000/api/movies/${movie.id}`, {
         ...currentMovie,
-        stars: currentMovie.stars.split(","),
+        stars: newStars(),
         id: movie.id
       })
-      .then(res => history.push("/"))
+      .then(res => {
+        history.push("/");
+      })
       .catch(err => console.log(err));
   };
 
