@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const initialFormState = {
   title: "",
@@ -27,11 +28,46 @@ const EditMovie = props => {
     }
   }, [movie]);
 
+  //   handle change
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setCurrentMovie({
+      ...currentMovie,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    // console.log(
+    //   {
+    //     ...currentMovie,
+    //     stars: currentMovie.stars.split(","),
+    //     id: movie.id
+    //   },
+    //   movie.id
+    // );
+    axios
+      .put(`http://localhost:5000/api/movies/${movie.id}`, {
+        ...currentMovie,
+        stars: currentMovie.stars.split(","),
+        id: movie.id
+      })
+      .then(res => history.push("/"))
+      .catch(err => console.log(err));
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="ind-field">
         <label htmlFor="title">Title</label>
-        <input type="text" name="title" id="title" value={currentMovie.title} />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value={currentMovie.title}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="ind-field">
@@ -41,6 +77,7 @@ const EditMovie = props => {
           name="director"
           id="director"
           value={currentMovie.director}
+          onChange={handleChange}
         />
       </div>
 
@@ -51,12 +88,19 @@ const EditMovie = props => {
           name="metascore"
           id="metascore"
           value={currentMovie.metascore}
+          onChange={handleChange}
         />
       </div>
 
       <div className="ind-field">
         <label htmlFor="stars">Stars</label>
-        <input type="text" name="stars" id="stars" value={currentMovie.stars} />
+        <input
+          type="text"
+          name="stars"
+          id="stars"
+          value={currentMovie.stars}
+          onChange={handleChange}
+        />
       </div>
 
       <button type="submit">Update</button>
