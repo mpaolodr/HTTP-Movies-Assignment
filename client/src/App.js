@@ -4,6 +4,7 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import EditMovie from "./Movies/EditMovie";
+import AddMovie from "./Movies/AddMovie";
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
@@ -36,6 +37,10 @@ const App = () => {
 
       <Route path="/update-movie/:id">
         <EditMovie movie={movie} />
+      </Route>
+
+      <Route path="/add-movie">
+        <AddMovie />
       </Route>
     </>
   );
