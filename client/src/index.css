@@ -60,7 +60,32 @@ body {
   border: 1px solid grey;
   padding: 5px 10px;
   background-color: lightseagreen;
+  width: 50px;
+  text-align: center;
 }
+
+.update-button {
+  position: absolute;
+  top: 70px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: lightseagreen;
+  width: 50px;
+  text-align: center;
+}
+
+.delete-button {
+  position: absolute;
+  top: 115px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: lightseagreen;
+  width: 50px;
+  text-align: center;
+}
+
 .save-button:hover {
   background-color: green;
   color: white;

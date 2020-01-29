@@ -42,6 +42,8 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        <div className="update-button">Edit</div>
+        <div className="delete-button">Delete</div>
       </div>
     );
   }
